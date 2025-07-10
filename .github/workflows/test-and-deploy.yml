@@ -1,0 +1,50 @@
+name: Test and Deploy
+
+# Trigger the workflow on push to the main branch
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    # Use the latest Ubuntu runner
+    runs-on: ubuntu-latest
+
+    # Set default working directory to the 'app' folder
+    defaults:
+      run:
+        working-directory: ./app
+
+    steps:
+      # Step 1: Checkout the repo
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js environment
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      # Step 3: Install npm dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Run test scripts (from package.json)
+      - name: Run tests
+        run: npm test
+
+  deploy:
+    # Only run this job after the 'test' job succeeds
+    needs: test
+    runs-on: ubuntu-latest
+
+    # Ensure this job runs only if previous jobs succeeded
+    if: success()
+
+    steps:
+      # Step 5: Trigger Render deploy hook using a secret URL
+      - name: Trigger Render Deploy Hook
+        run: |
+          curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}

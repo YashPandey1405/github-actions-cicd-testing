@@ -1,0 +1,21 @@
+{
+  "name": "ci-cd-pipelines",
+  "version": "1.0.0",
+  "description": "An Basic Mini-Project To Study CI/CD Pipelines & GitHub Actions",
+  "license": "ISC",
+  "author": "Yash Pandey",
+  "type": "commonjs",
+  "main": "app/index.js",
+  "scripts": {
+    "start": "nodemon app/index.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "jest": "^30.0.4",
+    "nodemon": "^3.1.10",
+    "supertest": "^7.1.3"
+  }
+}
