@@ -92,7 +92,16 @@ When the routes are implemented correctly, **all test cases pass** successfully:
 
 If any route is broken or missing, **relevant test cases fail**, ensuring reliability:
 
-![Wrong Tests](./asserts/Wrong-Test-Results.png)
+## ![Wrong Tests](./asserts/Wrong-Test-Results.png)
+
+---
+
+## ✅ Automated Testing via GitHub Actions
+
+Every code push triggers **automated testing on GitHub Actions**.
+If any route fails, the pipeline halts — ensuring only **fully tested, reliable code** gets deployed.
+
+![GitHub Actions](./asserts/GitHub-Actions.png)
 
 ---
 
